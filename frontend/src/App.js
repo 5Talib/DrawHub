@@ -70,7 +70,7 @@ function App() {
   return (
     <div className="App w-screen h-screen">
       <BrowserRouter>
-        {cookie.token ? (
+        {cookie.token.length > 0 ? (
           <Routes>
             <Route path="/" element={<LoggedHome />} />
             <Route
