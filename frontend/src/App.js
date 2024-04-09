@@ -40,22 +40,6 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
-    // async function fetchUser(){
-    //   const response = await fetch("http://localhost:3001/auth/user", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     credentials: "include",
-    //   });
-
-    //   const receivedData = await response.json();
-    //   console.log(receivedData);
-    //   if(receivedData.isAuth){
-    //     setUserName(receivedData.name);
-    //     setUserEmail(receivedData.email);
-    //   }
-    // };
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -140,7 +124,7 @@ function App() {
               path="/login"
               element={<Login userName={userName} userEmail={userEmail} />}
             />
-{/*             <Route path="*" element={<Navigate to="/login" />} /> */}
+            <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         )}
       </BrowserRouter>
