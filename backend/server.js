@@ -163,3 +163,5 @@ connectDB().then(() => {
     console.log("server running on port", PORT);
   });
 });
+
+module.exports = app;  // For deplotying on vercel
