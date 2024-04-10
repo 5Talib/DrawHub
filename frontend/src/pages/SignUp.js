@@ -34,7 +34,7 @@ export default function SignUp() {
       email,
       password,
     });
-    console.log(response);
+    // console.log(response);
     if (response && !response.err) {
       const token = response.data.token;
       const date = new Date();

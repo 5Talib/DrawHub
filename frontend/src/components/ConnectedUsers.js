@@ -24,16 +24,6 @@ export default function ConnectedUsers({
     toggleModal();
   };
 
-  //   const handleEditAccess = (userId, roomId, users) => {
-  //     console.log("clicked", userId, roomId, users);
-  //     socket.emit("updateEditAccess", { userId, roomId, users });
-  //     const userToUpdate = users.find((user) => user.userId === userId);
-  //     if (socket.id === userToUpdate.socketId) {
-  //       setUser(userToUpdate);
-  //     }
-  //     console.log(users);
-  //   };
-
   const host = user;
 
   return (

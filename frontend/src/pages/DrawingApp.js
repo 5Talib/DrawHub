@@ -33,14 +33,14 @@ export default function DrawingApp({ user, setUser, users, setUsers }) {
     if (user && (user.editAccess || user.host)) {
       setShowControls(true); // Show controls if user has edit access or is the host
     }
-    console.log("here", showControls);
+    // console.log("here", showControls);
     // socket.on("changeControls",({socketId})=>{
     //   console.log(socketId);
     // })
   }, []);
   useEffect(() => {
     socket.on("sendControls", (data) => {
-      console.log(data);
+      // console.log(data);
       if (showControls) {
         setShowControls(false);
       } else {
@@ -125,7 +125,7 @@ export default function DrawingApp({ user, setUser, users, setUsers }) {
       setTool("");
     }
     socket.on("onDraw", (data) => {
-      console.log(data);
+      // console.log(data);
       setElements(data.data);
       setHistory(data.history);
     });
@@ -298,7 +298,7 @@ export default function DrawingApp({ user, setUser, users, setUsers }) {
     if (elements.length === 1) return;
 
     // Save the element to history
-    console.log(elements.length);
+    // console.log(elements.length);
     const removedElement = elements[elements.length - 1];
     setHistory((prev) => [...prev, removedElement]);
 
@@ -307,7 +307,7 @@ export default function DrawingApp({ user, setUser, users, setUsers }) {
       const updatedElements = prevElements.slice(0, -1);
       // Emit the draw event after updating the state
       socket.emit("draw", { data: updatedElements, history: history });
-      console.log(updatedElements.length);
+      // console.log(updatedElements.length);
       return updatedElements;
     });
   };
@@ -334,15 +334,15 @@ export default function DrawingApp({ user, setUser, users, setUsers }) {
   };
 
   const handleEditAccess = (userId, roomId, users) => {
-    console.log("clicked", userId, roomId, users);
+    // console.log("clicked", userId, roomId, users);
     socket.emit("updateEditAccess", { userId, roomId, users });
     // socket.emit("controlsAccess")
     const userToUpdate = users.find((user) => user.userId === userId);
     if (socket.id === userToUpdate.socketId) {
       setUser(userToUpdate);
     }
-    console.log(users);
-    console.log(userToUpdate);
+    // console.log(users);
+    // console.log(userToUpdate);
     if (user.host) {
       socket.emit("changeControls", {
         socketId: userToUpdate.socketId,
@@ -364,7 +364,7 @@ export default function DrawingApp({ user, setUser, users, setUsers }) {
         id: user.roomId,
       });
       toast.success("Meeting details shared successfully!");
-      console.log(email, user.name, user.roomId);
+      // console.log(email, user.name, user.roomId);
       // setShowEmailModal(!showEmailModal);
       // console.log(response);
       setTimeout(() => {
@@ -372,7 +372,7 @@ export default function DrawingApp({ user, setUser, users, setUsers }) {
       }, 2500);
     } catch (error) {
       toast.error("Something Went Wrong!")
-      console.log(error);
+      // console.log(error);
     } finally {
       setIsLoading(false);
     }

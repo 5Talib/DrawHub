@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { socket } from "../components/socket";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LogoutButton from "../components/LogoutButton";
 
@@ -20,7 +20,7 @@ export default function Room({
       setOtherName(userName);
     }
   }, [userName, userEmail]);
-  console.log("Username: ", userName);
+  // console.log("Username: ", userName);
   const [roomId, setRoomId] = useState(uuid());
   const [joinRoomId, setJoinRoomId] = useState("");
   const [name, setName] = useState(userName);
@@ -33,16 +33,17 @@ export default function Room({
   useEffect(() => {
     socket.on("userConnected", (data) => {
       if (data.success) {
-        console.log("User connected");
+        // console.log("User connected");
         // setUsers(data.users);
         // console.log(data.users);
       } else {
-        console.log("Something went wrong");
+        // console.log("Something went wrong");
+        toast.error("Something went wrong!");
       }
       // console.log(users);
     });
     socket.on("usersList", (data) => {
-      console.log(data);
+      // console.log(data);
       setUsers(data.users);
     });
   }, [users, setUsers]);
@@ -71,7 +72,7 @@ export default function Room({
     };
 
     setUser(roomData);
-    console.log(roomData);
+    // console.log(roomData);
     navigate(`/drawing-board/${roomId}`);
     socket.emit("userJoined", roomData);
   };
@@ -114,8 +115,8 @@ export default function Room({
         }, 1000);
       }
     } catch (error) {
-      console.error("Failed to copy Room ID:", error);
-      toast.error("Something Went Wrong!")
+      // console.error("Failed to copy Room ID:", error);
+      toast.error("Something Went Wrong!");
     }
   };
 

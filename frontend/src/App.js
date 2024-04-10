@@ -54,13 +54,14 @@ function App() {
         );
 
         const receivedData = response.data;
-        console.log(receivedData);
+        // console.log(receivedData);
         if (receivedData.isAuth) {
           setUserName(receivedData.name);
           setUserEmail(receivedData.email);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        toast.error("Something Went Wrong!");
+        // console.error("Error fetching data:", error);
       }
     };
 
@@ -124,7 +125,7 @@ function App() {
               path="/login"
               element={<Login userName={userName} userEmail={userEmail} />}
             />
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         )}
       </BrowserRouter>

@@ -22,16 +22,17 @@ export default function AllDocuments({
   useEffect(() => {
     socket.on("userConnected", (data) => {
       if (data.success) {
-        console.log("User connected");
+        // console.log("User connected");
         // setUsers(data.users);
         // console.log(data.users);
       } else {
-        console.log("Something went wrong");
+        // console.log("Something went wrong");
+        toast.error("Something Went Wrong!");
       }
       // console.log(users);
     });
     socket.on("usersList", (data) => {
-      console.log(data);
+    //   console.log(data);
       setUsers(data.users);
     });
   }, [users, setUsers]);
@@ -46,10 +47,10 @@ export default function AllDocuments({
             email: userEmail,
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
         setDocuments(response.data);
       } catch (error) {
-        console.error("Error fetching documents:", error);
+        // console.error("Error fetching documents:", error);
         toast.error("Something Went Wrong!")
       }
     };
@@ -59,12 +60,12 @@ export default function AllDocuments({
 
   useEffect(()=>{
     if(documents){
-        console.log(documents.length);
+        // console.log(documents.length);
         setIsLoading(false);
     }
   }, [documents])
 
-  
+
   const handleGenerateRoom = (document) => {
     // e.preventDefault();
 
