@@ -53,6 +53,10 @@ app.use("/auth", authRoute);
 app.use("/document", documentRoute);
 app.use("/share", shareRoute);
 
+app.get("/", (req,res)=>{
+  res.send("You are on Backend of DrawHub!");
+})
+
 io.on("connection", (socket) => {
   console.log(`User ${socket.id} connected`);
 
@@ -163,5 +167,7 @@ connectDB().then(() => {
     console.log("server running on port", PORT);
   });
 });
+
+
 
 module.exports = app;  // For deplotying on vercel
