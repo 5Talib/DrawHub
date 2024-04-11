@@ -21,7 +21,7 @@ const sendMail = async (req, res) => {
       text: `We are excited to inform you that you have been invited to collaborate on a document hosted by ${name}.
 
       Meeting Room ID: ${id}
-
+      Link: https://drawhub-two.vercel.app/
       Best regards,
       DrawHub
         `, // plain text body
