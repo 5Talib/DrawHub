@@ -71,9 +71,9 @@ function App() {
 
   useEffect(()=>{
     if(userEmail){
-      console.log(userEmail);
+      console.log("Done");
     } else{
-      console.log(userEmail);
+      console.log("Not Done");
     }
   }, [userEmail])
 
