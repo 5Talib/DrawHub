@@ -19,7 +19,11 @@ const register = async (req, res) => {
     });
 
     const token = await newUser.generateToken();
-    const userToReturn = { ...newUser.toJSON(), token };
+    console.log(token);
+    res.cookie("jwt", token, {
+      httpOnly: true,
+    });
+    const userToReturn = { ...newUser.toJSON()};
     delete userToReturn.password;
     return res.status(200).json(userToReturn);
   } catch (error) {
@@ -39,7 +43,10 @@ const login = async (req, res) => {
 
     if (isPasswordValid) {
       const token = await user.generateToken();
-      const userToReturn = { ...user.toJSON(), token };
+      res.cookie("jwt", token, {
+        httpOnly: true,
+      });
+      const userToReturn = { ...user.toJSON() };
       delete userToReturn.password;
       return res.status(200).json(userToReturn);
     } else {
@@ -50,8 +57,21 @@ const login = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("jwt", " ", {
+      httpOnly: true,
+    });
+    return res.status(200).send("Logged Out Successfully");
+  } catch (error) {
+    console.error("Error Logging out", error);
+    return res.status(500).send("Internal Server Error");
+  }
+};
+
 const getCurrentUser = async (req, res) => {
-  const token = req.cookies.token;
+  const token = req.cookies.jwt;
+  console.log(token);
   jwt.verify(token, process.env.JWT_SECRET_KEY, async function (err, user) {
     if (err) {
       return res.status(200).json({ isAuth: 0 });
@@ -68,4 +88,4 @@ const getCurrentUser = async (req, res) => {
   });
 };
 
-module.exports = { register, login, getCurrentUser };
+module.exports = { register, login, getCurrentUser, logout };

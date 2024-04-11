@@ -7,6 +7,7 @@ export const makeUnauthenicationPOSTRequest = async (route, body) => {
       headers: {
         "Content-Type": "application/json",
       },
+      withCredentials: true,
     });
     // console.log(response.data);
     return response;

@@ -5,11 +5,12 @@ import { makeUnauthenicationPOSTRequest } from "../utils/serverHelpers";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "../components/Loader";
+import { FrontEndURL } from "../utils/config";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [cookie, setCookie] = useCookies(["token"]);
+  // const [cookie, setCookie] = useCookies(["token"]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -29,12 +30,7 @@ export default function Login() {
       password,
     });
     if (response && !response.err) {
-      // console.log(response.data);
-      const token = response.data.token;
-      const date = new Date();
-      date.setDate(date.getDate() + 30);
-      setCookie("token", token, { path: "/", expires: date });
-      navigate("/myDocuments");
+      window.location.href = FrontEndURL + "/myDocuments";
     } else {
     //   alert("failure");
       toast.error("Something Went Wrong!")

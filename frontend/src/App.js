@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import LoggedHome from "./pages/LoggedHome";
+import { backendURL } from "./utils/config";
 
 const uuid = () => {
   var S4 = () => {
@@ -35,7 +36,7 @@ const uuid = () => {
 function App() {
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
-  const [cookie, setCookie] = useCookies(["token"]);
+  // const [cookie, setCookie] = useCookies(["token"]);
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
 
@@ -43,7 +44,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3001/auth/user",
+          `${backendURL}/auth/user`,
           {},
           {
             headers: {
@@ -55,10 +56,10 @@ function App() {
 
         const receivedData = response.data;
         // console.log(receivedData);
-        if (receivedData.isAuth) {
-          setUserName(receivedData.name);
-          setUserEmail(receivedData.email);
-        }
+          if (receivedData.isAuth) {
+            setUserName(receivedData.name);
+            setUserEmail(receivedData.email);
+          }
       } catch (error) {
         toast.error("Something Went Wrong!");
         // console.error("Error fetching data:", error);
@@ -68,10 +69,18 @@ function App() {
     fetchData();
   }, []);
 
+  useEffect(()=>{
+    if(userEmail){
+      console.log(userEmail);
+    } else{
+      console.log(userEmail);
+    }
+  }, [userEmail])
+
   return (
     <div className="App w-screen h-screen">
       <BrowserRouter>
-        {cookie.token.length > 0 ? (
+        {userEmail ? (
           <Routes>
             <Route path="/" element={<LoggedHome />} />
             <Route
