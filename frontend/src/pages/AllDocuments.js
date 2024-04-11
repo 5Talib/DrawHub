@@ -15,7 +15,7 @@ export default function AllDocuments({
   users,
   setUsers,
 }) {
-  const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
