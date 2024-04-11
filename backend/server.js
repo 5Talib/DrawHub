@@ -20,7 +20,7 @@ const {
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://drawhub-two.vercel.app/",
+    origin: "https://drawhub-two.vercel.app",
     methods: ["GET", "POST"],
     allowedHeaders: [
       "Origin",
@@ -35,7 +35,7 @@ app.use(
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://drawhub-two.vercel.app/",
+    origin: "https://drawhub-two.vercel.app",
     methods: ["GET", "POST"],
     allowedHeaders: [
       "Origin",
