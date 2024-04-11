@@ -22,6 +22,9 @@ const register = async (req, res) => {
     console.log(token);
     res.cookie("jwt", token, {
       httpOnly: true,
+      sameSite: "None",
+      secure: true,
+      domain: "draw-hub-eta.vercel.app",
     });
     const userToReturn = { ...newUser.toJSON()};
     delete userToReturn.password;
@@ -45,6 +48,9 @@ const login = async (req, res) => {
       const token = await user.generateToken();
       res.cookie("jwt", token, {
         httpOnly: true,
+        sameSite: "None",
+        secure: true,
+        domain: "draw-hub-eta.vercel.app",
       });
       const userToReturn = { ...user.toJSON() };
       delete userToReturn.password;
@@ -61,6 +67,9 @@ const logout = async (req, res) => {
   try {
     res.clearCookie("jwt", " ", {
       httpOnly: true,
+      sameSite: "None",
+      secure: true,
+      domain: "draw-hub-eta.vercel.app",
     });
     return res.status(200).send("Logged Out Successfully");
   } catch (error) {
