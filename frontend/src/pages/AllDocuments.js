@@ -15,7 +15,7 @@ export default function AllDocuments({
   users,
   setUsers,
 }) {
-  const [documents, setDocuments] = useState();
+  const [documents, setDocuments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -61,7 +61,9 @@ export default function AllDocuments({
   useEffect(()=>{
     if(documents){
         // console.log(documents.length);
+        console.log("0");
         setIsLoading(false);
+        
     }
   }, [documents])
 
