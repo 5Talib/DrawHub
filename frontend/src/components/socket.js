@@ -6,4 +6,6 @@ const URL =
     ? "https://draw-hub-eta.vercel.app/"
     : "https://localhost:3001";
 
-export const socket = io(URL);
+export const socket = io(URL, {
+  transports: ["websocket"],
+});
