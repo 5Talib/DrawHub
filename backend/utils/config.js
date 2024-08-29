@@ -1,4 +1,4 @@
 const backendURL = "http://localhost:3001";
-const frontEndURL = "http://localhost:3000";
+const frontEndURL = "https://drawhub-1.onrender.com";
 
 module.exports = { backendURL, frontEndURL };
