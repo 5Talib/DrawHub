@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useCookies, withCookies, Cookies } from "react-cookie";
-import { FrontEndURL, backendURL } from "../utils/config";
+import { frontEndURL, backendURL } from "../utils/config";
 
 const LogoutButton = () => {
   const [cookie, setCookie] = useCookies(["token"]);

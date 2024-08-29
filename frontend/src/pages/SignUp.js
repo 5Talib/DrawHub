@@ -5,7 +5,7 @@ import { makeUnauthenicationPOSTRequest } from "../utils/serverHelpers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "../components/Loader";
-import { FrontEndURL } from "../utils/config";
+import { frontEndURL } from "../utils/config";
 
 export default function SignUp() {
   const [name, setName] = useState("");

@@ -10,6 +10,7 @@ const documentRoute = require("./routes/documents");
 const shareRoute = require("./routes/share");
 const Document = require("./modals/Document");
 const cookieParser = require("cookie-parser");
+const {backendURL, frontEndURL} = require("./utils/config");
 const PORT = 3001;
 const {
   addUser,
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(
   cors({
     // origin: "https://drawhub-two.vercel.app",
-    origin: "http://localhost:3000",
+    origin: frontEndURL,
     methods: ["GET", "POST"],
     allowedHeaders: [
       "Origin",
@@ -37,7 +38,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     // origin: "https://drawhub-two.vercel.app",
-    origin: "http://localhost:3000",
+    origin: frontEndURL,
     methods: ["GET", "POST"],
     allowedHeaders: [
       "Origin",
